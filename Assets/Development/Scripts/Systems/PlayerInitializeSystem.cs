@@ -1,20 +1,28 @@
 using Leopotam.Ecs;
 using UnityEngine;
 
-public class PlayerInitSystem// : IEcsInitSystem
+public class PlayerInitSystem : IEcsInitSystem
 {
-    /*
+    // Main
     private EcsWorld ecsWorld;
-    private StaticData staticData;
     private SceneData sceneData;
-    private UI ui;
-    private RuntimeData runtimeData;
+    //private StaticData staticData;
+    //private UI ui;
+    //private RuntimeData runtimeData;
 
     public void Init()
     {
+        // Install player
         EcsEntity playerEntity = ecsWorld.NewEntity();
 
-        ref var player = ref playerEntity.Get<Player>();
+            // Fill player data
+            ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
+
+            playerComponent.Animator = sceneData.PlayerTransform.GetComponentInChildren<Animator>();
+            playerComponent.Transform = sceneData.PlayerTransform;
+            playerComponent.CharacterController = sceneData.PlayerTransform.GetComponent<CharacterController>();
+        /*
+
         ref var inputData = ref playerEntity.Get<PlayerInputData>(); 
         ref var hasWeapon = ref playerEntity.Get<HasWeapon>();
         ref var animatorRef = ref playerEntity.Get<AnimatorRef>();
@@ -53,6 +61,6 @@ public class PlayerInitSystem// : IEcsInitSystem
         playerGO.GetComponent<PlayerView>().entity = playerEntity;
 
         animatorRef.animator = player.playerAnimator;
+        */
     }
-    */
 }

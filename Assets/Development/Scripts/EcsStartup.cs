@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Leopotam.Ecs;
+using NaughtyAttributes;
 
 public class EcsStartup : MonoBehaviour
 {
@@ -9,13 +10,22 @@ public class EcsStartup : MonoBehaviour
     private EcsWorld ecsWorld;
     private EcsSystems ecsSystems;
 
+    // Data
+    [SerializeField, BoxGroup("Data")] private SceneData sceneData;
+    //public StaticData configuration;
+
     // Initialize
     void Init()
     {        
         ecsWorld = new EcsWorld();
         ecsSystems = new EcsSystems(ecsWorld);
+
+        // Adding stuff
         ecsSystems
-            .Init();
+            .Inject(sceneData);
+
+        // Finalizing stuff
+        ecsSystems.Init();
     }
 
     // Update
