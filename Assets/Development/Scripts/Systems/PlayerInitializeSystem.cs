@@ -5,6 +5,8 @@ public class PlayerInitSystem : IEcsInitSystem
 {
     // Main
     private EcsWorld ecsWorld;
+
+    // Data
     private SceneData sceneData;
     //private StaticData staticData;
     //private UI ui;
@@ -14,13 +16,16 @@ public class PlayerInitSystem : IEcsInitSystem
     {
         // Install player
         EcsEntity playerEntity = ecsWorld.NewEntity();
-
-            // Fill player data
+            ref var moveComponent = ref playerEntity.Get<MoveComponent>();
+            ref var inputComponent = ref playerEntity.Get<InputComponent>(); 
             ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
 
-            playerComponent.Animator = sceneData.PlayerTransform.GetComponentInChildren<Animator>();
-            playerComponent.Transform = sceneData.PlayerTransform;
-            playerComponent.CharacterController = sceneData.PlayerTransform.GetComponent<CharacterController>();
+            // Fill move data
+            moveComponent.Transform = sceneData.PlayerTransform;
+            moveComponent.Animator = sceneData.PlayerTransform.GetComponentInChildren<Animator>();
+            moveComponent.MoveSpeed = 3.2f;
+            moveComponent.RotateSpeed = 6.4f;
+            moveComponent.CharacterController = sceneData.PlayerTransform.GetComponent<CharacterController>();
         /*
 
         ref var inputData = ref playerEntity.Get<PlayerInputData>(); 

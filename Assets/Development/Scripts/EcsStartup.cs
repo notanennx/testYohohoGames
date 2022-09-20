@@ -16,13 +16,18 @@ public class EcsStartup : MonoBehaviour
     //public StaticData configuration;
 
     // Initialize
-    void Init()
+    private void Awake()
     {        
         ecsWorld = new EcsWorld();
         ecsSystems = new EcsSystems(ecsWorld);
 
         // Adding stuff
         ecsSystems
+            .Add(new PlayerInitSystem())
+
+            .Add(new InputSystem())
+            .Add(new MovementSystem())
+
             .Inject(uiData)
             .Inject(sceneData);
 
@@ -31,13 +36,13 @@ public class EcsStartup : MonoBehaviour
     }
 
     // Update
-    void UpdateLoop()
+    private void Update()
     {
         ecsSystems?.Run();
     }
 
     // Destroy
-    void Destroy()
+    private void Destroy()
     {
         if (ecsSystems != null)
         {
