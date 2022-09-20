@@ -11,6 +11,7 @@ public class EcsStartup : MonoBehaviour
     private EcsSystems ecsSystems;
 
     // Data
+    [SerializeField, BoxGroup("Data")] private UIData uiData;
     [SerializeField, BoxGroup("Data")] private SceneData sceneData;
     //public StaticData configuration;
 
@@ -22,6 +23,7 @@ public class EcsStartup : MonoBehaviour
 
         // Adding stuff
         ecsSystems
+            .Inject(uiData)
             .Inject(sceneData);
 
         // Finalizing stuff
