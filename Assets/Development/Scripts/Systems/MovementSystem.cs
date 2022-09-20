@@ -7,6 +7,9 @@ public class MovementSystem : IEcsRunSystem
     private EcsWorld ecsWorld;
     private EcsFilter<MoveComponent> filter;
 
+    // Data
+    private SceneData sceneData;
+
     // Process
     public void Run()
     {
@@ -16,46 +19,26 @@ public class MovementSystem : IEcsRunSystem
             ref var moveComponent = ref filter.Get1(i);
 
                 // Move
-                moveComponent.CharacterController.Move(moveComponent.TargetPosition * (moveComponent.MoveSpeed * Time.deltaTime));
+                Vector3 targetPosition = ConvertoToIso(moveComponent.TargetPosition * (moveComponent.MoveSpeed * Time.deltaTime));
+                    moveComponent.CharacterController.Move(targetPosition);
 
                 // Rotate
-                Vector3 newDirection = Vector3.RotateTowards(moveComponent.Transform.forward, moveComponent.TargetPosition, (moveComponent.RotateSpeed * Time.deltaTime), 0f);
+                Vector3 newDirection = Vector3.RotateTowards(moveComponent.Transform.forward, targetPosition, (moveComponent.RotateSpeed * Time.deltaTime), 0f);
                     Quaternion targetRotation = Quaternion.LookRotation(newDirection);
                         targetRotation.x = 0;
                         targetRotation.z = 0;
 
                     moveComponent.Transform.rotation = targetRotation;
-
-
-            /*
-            if (moveComponent.IsMoving())
-            {
-                // Non npcs only
-                if (!moveComponent.IsNpc())
-                {
-                    // Get
-                    Vector3 newPosition = new Vector3(moveComponent.GetMovement().x, 0f, moveComponent.GetMovement().y).normalized;
-                    Vector3 newDirection = Vector3.RotateTowards(moveComponent.transform.forward, newPosition, (moveComponent.GetRotationSpeed() * Time.deltaTime), 0f);
-                
-                    // Angle
-                    Quaternion targetRotation = Quaternion.LookRotation(newDirection);
-                        targetRotation.x = 0;
-                        targetRotation.z = 0;
-
-                    // Movement
-                    moveComponent.transform.rotation = targetRotation;
-                    moveComponent.Move(newPosition);
-                }
-
-                // Animation
-                moveComponent.GetAnimator().SetBool("IsMoving", true);
-            }
-            else
-            {
-                // Animation
-                moveComponent.GetAnimator().SetBool("IsMoving", false);
-            }
-            */
         }
+    }
+
+    // Converts movement vector to isometric vector;
+    private Vector3 ConvertoToIso(Vector3 inputVector)
+    {
+        Quaternion rotation = Quaternion.Euler(0, sceneData.Camera.transform.localEulerAngles.y, 0);
+        Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
+        Vector3 result = isoMatrix.MultiplyPoint3x4(inputVector);
+
+        return result;
     }
 }
