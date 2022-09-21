@@ -3,15 +3,6 @@ using UnityEngine;
 using Leopotam.Ecs;
 using NaughtyAttributes;
 
-[Serializable]
-public class SpawnerData
-{
-    public int Amount;
-    public float Cooldown;
-    public Transform Transform;
-    public ScriptableItem ScriptableItem;
-}
-
 public class SceneData : MonoBehaviour
 {
     [BoxGroup("Main")] public Camera Camera;
@@ -20,5 +11,6 @@ public class SceneData : MonoBehaviour
 
     [BoxGroup("Holders")] public Transform ItemsHolder;
 
-    [BoxGroup("Spawners")] public SpawnerData[] ItemSpawners;
+    [BoxGroup("Spawners")] public float SpawnerCooldown;
+    [BoxGroup("Spawners")] public ScriptableItem SpawnerScriptableItem;
 }

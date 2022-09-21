@@ -16,20 +16,23 @@ public class InitializeSpawnersSystem : IEcsInitSystem
     public void Init()
     {
         // Loop
-        foreach (SpawnerData spawnerData in sceneData.ItemSpawners)
+        foreach (SpawnerView spawnerView in GameObject.FindObjectsOfType<SpawnerView>())
         {
             // Create
             EcsEntity spawnerEntity = ecsWorld.NewEntity();
                 ref var spawnerComponent = ref spawnerEntity.Get<SpawnerComponent>();
 
+            // Attach
+            spawnerView.Entity = spawnerEntity;
+
             // Fillup data
-            spawnerComponent.Cooldown = spawnerData.Cooldown;
-            spawnerComponent.Transform = spawnerData.Transform;
-            spawnerComponent.ScriptableItem = spawnerData.ScriptableItem;
+            spawnerComponent.Cooldown = sceneData.SpawnerCooldown;
+            spawnerComponent.Transform = spawnerView.transform;
+            spawnerComponent.ScriptableItem = sceneData.SpawnerScriptableItem;
 
             // Fillup positions
             spawnerComponent.SpawnPositions = new List<Transform>();
-            foreach (Transform spawnPoint in spawnerComponent.Transform.GetChild(0))
+            foreach (Transform spawnPoint in spawnerComponent.Transform.Find("Spawn Positions"))
                 spawnerComponent.SpawnPositions.Add(spawnPoint);
         }
     }

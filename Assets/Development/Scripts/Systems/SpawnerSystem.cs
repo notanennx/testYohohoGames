@@ -72,6 +72,8 @@ public class SpawnerSystem : IEcsRunSystem
             ref var itemComponent = ref newItemEntity.Get<ItemComponent>();
                 itemComponent.Transform = newItem.transform;
                 itemComponent.ModelTransform = itemComponent.Transform.GetChild(0);
-                itemComponent.ScriptableItem = inputSpawner.ScriptableItem;
+
+        // Attach entity
+        newItem.GetComponent<ItemView>().Entity = newItemEntity;
     }
 }

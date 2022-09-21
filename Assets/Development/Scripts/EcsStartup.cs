@@ -13,7 +13,6 @@ public class EcsStartup : MonoBehaviour
     // Data
     [SerializeField, BoxGroup("Data")] private UIData uiData;
     [SerializeField, BoxGroup("Data")] private SceneData sceneData;
-    //public StaticData configuration;
 
     // Initialize
     private void Awake()

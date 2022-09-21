@@ -72,9 +72,10 @@ public class DropzoneSystem : IEcsRunSystem
                 itemTransform.DOComplete();
                 itemTransform.SetParent(droppointTransform);
 
-                itemTransform.DOLocalMove(itemTransform.localPosition + new Vector3(0, 0.5f, 0), 0.20f).OnComplete(() => {
+                itemTransform.DOLocalMove(itemTransform.localPosition + new Vector3(0, 2.0f, 0), 0.20f).OnComplete(() => {
                     itemTransform.DOLocalMove(Vector3.zero, 0.20f).OnComplete(() => {
                         itemTransform.DOScale(Vector3.zero, 0.30f).OnComplete(() => {
+                            itemTransform.GetComponent<ItemView>().Entity.Destroy();
                             Object.Destroy(itemTransform.gameObject);
                         });
                     });
