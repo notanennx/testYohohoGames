@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public struct SpawnerComponent
 {
@@ -10,4 +11,5 @@ public struct SpawnerComponent
     public float NextSpawn;
     public Transform Transform;
     public ScriptableItem ScriptableItem;
+    public List<Transform> SpawnPositions;
 }

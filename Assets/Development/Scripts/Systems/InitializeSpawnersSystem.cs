@@ -1,5 +1,8 @@
+using System;
 using Leopotam.Ecs;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class InitializeSpawnersSystem : IEcsInitSystem
 {
@@ -24,6 +27,11 @@ public class InitializeSpawnersSystem : IEcsInitSystem
             spawnerComponent.MaxAmount = spawnerData.Amount;
             spawnerComponent.Transform = spawnerData.Transform;
             spawnerComponent.ScriptableItem = spawnerData.ScriptableItem;
+
+            // Fillup positions
+            spawnerComponent.SpawnPositions = new List<Transform>();
+            foreach (Transform spawnPoint in spawnerComponent.Transform.GetChild(0))
+                spawnerComponent.SpawnPositions.Add(spawnPoint);
         }
     }
 }
