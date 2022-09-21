@@ -26,18 +26,18 @@ public class PickupSystem : IEcsRunSystem
             {
                 // Get
                 Vector3 newPosition = new Vector3(0f, (0.25f * stackComponent.ItemsStack.Count), 0f);
-                Transform itemTransfom = pickupEvent.VictimTransform;
+                Transform itemTransform = pickupEvent.VictimTransform;
 
                 // Tweening
-                itemTransfom.DOComplete();
+                itemTransform.DOComplete();
 
                 // Tweening
-                itemTransfom.SetParent(stackComponent.AttachmentTransform);
-                itemTransfom.DOLocalMove(itemTransfom.localPosition + new Vector3(0, 0.5f + newPosition.y, 0), 0.20f).OnComplete(() => {
-                    itemTransfom.DOLocalMove(newPosition, 0.20f);
+                itemTransform.SetParent(stackComponent.AttachmentTransform);
+                itemTransform.DOLocalMove(itemTransform.localPosition + new Vector3(0, 0.5f + newPosition.y, 0), 0.20f).OnComplete(() => {
+                    itemTransform.DOLocalMove(newPosition, 0.20f);
                 });
-                itemTransfom.DOLocalRotate(new Vector3(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0, 360f)), 0.20f, RotateMode.LocalAxisAdd).OnComplete(() => {
-                        itemTransfom.DOLocalRotate(new Vector3(90f, 90f, 0f), 0.20f);
+                itemTransform.DOLocalRotate(new Vector3(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0, 360f)), 0.20f, RotateMode.LocalAxisAdd).OnComplete(() => {
+                        itemTransform.DOLocalRotate(new Vector3(90f, 90f, 0f), 0.20f);
                     });
 
                 // Add

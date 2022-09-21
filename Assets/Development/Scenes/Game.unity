@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 1085951155}
   - component: {fileID: 1085951154}
   - component: {fileID: 1085951156}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Dropzone collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

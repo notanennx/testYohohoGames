@@ -30,6 +30,7 @@ public class EcsStartup : MonoBehaviour
             .Add(new InputSystem())
             .Add(new PickupSystem())
             .Add(new SpawnerSystem())
+            .Add(new DropzoneSystem())
             .Add(new MovementSystem())
             .Add(new AnimationSystem())
 

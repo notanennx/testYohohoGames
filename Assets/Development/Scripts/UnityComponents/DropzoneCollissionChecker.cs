@@ -19,7 +19,7 @@ public class DropzoneCollissionChecker : MonoBehaviour
                 exitEvent.DropzoneEntity = other.transform.parent.GetComponent<DropzoneView>().Entity;
 
                 // Setup dropzone
-                exitEvent.OwnerEntity.Get<StackComponent>().Dropzone = exitEvent.DropzoneEntity;
+                exitEvent.OwnerEntity.Get<StackComponent>().Dropzone = EcsEntity.Null;
     }
 
     // Entering the dropzone.
@@ -32,6 +32,6 @@ public class DropzoneCollissionChecker : MonoBehaviour
                 enterEvent.DropzoneEntity = other.transform.parent.GetComponent<DropzoneView>().Entity;
 
                 // Clean dropzone
-                enterEvent.OwnerEntity.Get<StackComponent>().Dropzone = EcsEntity.Null;
+                enterEvent.OwnerEntity.Get<StackComponent>().Dropzone = enterEvent.DropzoneEntity;
     }
 }

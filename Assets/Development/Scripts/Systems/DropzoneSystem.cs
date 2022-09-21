@@ -16,28 +16,37 @@ public class DropzoneSystem : IEcsRunSystem
     // Process
     public void Run()
     {
-        // Loop exits
+        // Stacking
+        ProcessStacks();
+
+        // Collission
+        ProcessExits();
+        ProcessEnters();
+    }
+
+    // Processes exits collission
+    private void ProcessExits()
+    {
+        // Loop
         foreach (var i in ecsFilterExit)
         {
-            // Debug
-            Debug.Log("Exited dropzone!");
-
             // Destroy
             ref var exitEventEntity = ref ecsFilterExit.GetEntity(i);
                 exitEventEntity.Destroy();
-        }
+        } 
+    }
 
-        // Loop enters
+    // Processes enters collission
+    private void ProcessEnters()
+    {
         foreach (var i in ecsFilterEnter)
         {
-            // Debug
-            Debug.Log("Enteed dropzone!");
-
             // Destroy
             ref var enteEventEntity = ref ecsFilterEnter.GetEntity(i);
                 enteEventEntity.Destroy();
         }
     }
+
 
     // Process stack removal
     private void ProcessStacks()
@@ -57,14 +66,21 @@ public class DropzoneSystem : IEcsRunSystem
 
                 // Pick
                 Transform itemTransform = stackComponent.ItemsStack.Pop();
+                itemTransform.GetComponent<BoxCollider>().enabled = false;
 
                 // Tweening
                 itemTransform.DOComplete();
                 itemTransform.SetParent(droppointTransform);
 
-                itemTransform.DOLocalMove(Vector3.zero, 0.30f).OnComplete(() => {
-                    itemTransform.DOScale(Vector3.zero, 0.30f).OnComplete(() => {
-                        Object.Destroy(itemTransform.gameObject);
+                itemTransform.DOLocalMove(itemTransform.localPosition + new Vector3(0, 0.5f, 0), 0.20f).OnComplete(() => {
+                    itemTransform.DOLocalMove(Vector3.zero, 0.20f).OnComplete(() => {
+                        itemTransform.DOScale(Vector3.zero, 0.30f).OnComplete(() => {
+                            Object.Destroy(itemTransform.gameObject);
+                        });
+                    });
+
+                    itemTransform.DOLocalRotate(new Vector3(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0, 360f)), 0.20f, RotateMode.LocalAxisAdd).OnComplete(() => {
+                            itemTransform.DOLocalRotate(new Vector3(90f, 90f, 0f), 0.20f);
                     });
                 });
             }
