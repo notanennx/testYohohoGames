@@ -36,6 +36,11 @@ public class InitializePlayerSystem : IEcsInitSystem
                 // Anims
                 animatorComponent.Animator = sceneData.PlayerTransform.GetComponentInChildren<Animator>();
 
+                // Dropper
+                DropzoneCollissionChecker dropzoneCollissionChecker = sceneData.PlayerTransform.GetComponentInChildren<DropzoneCollissionChecker>();
+                    dropzoneCollissionChecker.EcsWorld = ecsWorld;
+                    dropzoneCollissionChecker.OwnerEntity = playerEntity;
+
                 // Movement
                 moveComponent.Transform = sceneData.PlayerTransform;
                 moveComponent.MoveSpeed = 4.8f;

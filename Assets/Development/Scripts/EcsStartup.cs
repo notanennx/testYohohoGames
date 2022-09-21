@@ -25,6 +25,7 @@ public class EcsStartup : MonoBehaviour
         ecsSystems
             .Add(new InitializePlayerSystem())
             .Add(new InitializeSpawnersSystem())
+            .Add(new InitializeDropzonesSystem())
 
             .Add(new InputSystem())
             .Add(new PickupSystem())
