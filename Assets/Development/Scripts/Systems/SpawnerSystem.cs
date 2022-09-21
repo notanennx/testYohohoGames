@@ -47,8 +47,6 @@ public class SpawnerSystem : IEcsRunSystem
         // Collision
         Collider[] hitColliders = Physics.OverlapSphere(spawnpointTransform.position, 0.1f);
 
-        Debug.Log(hitColliders.Length);
-
         // Returning
         if (hitColliders.Length > 0)
             return null;

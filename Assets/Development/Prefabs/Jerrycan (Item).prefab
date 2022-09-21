@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1152817685047751681}
   - component: {fileID: 1152817685050651681}
   - component: {fileID: 1152817685049521889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8674365581920511842}
   - component: {fileID: 272324202369871645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jerrycan (Item)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
