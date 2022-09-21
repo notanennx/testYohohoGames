@@ -23,7 +23,8 @@ public class EcsStartup : MonoBehaviour
 
         // Adding stuff
         ecsSystems
-            .Add(new PlayerInitSystem())
+            .Add(new InitializePlayerSystem())
+            .Add(new InitializeSpawnersSystem())
 
             .Add(new InputSystem())
             .Add(new MovementSystem())
