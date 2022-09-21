@@ -7,7 +7,8 @@ using System.Collections.Generic;
 public struct StackComponent
 {
     public int Capacity;
-    public EcsEntity Dropzone;
+    public EcsEntity CounterEntity;
+    public EcsEntity DropzoneEntity;
     public Transform Transform;
     public Transform AttachmentTransform;
     public Stack<Transform> ItemsStack;

@@ -42,6 +42,13 @@ public class PickupSystem : IEcsRunSystem
 
                 // Add
                 stackComponent.ItemsStack.Push(pickupEvent.VictimTransform);
+
+                // Event
+                var newEvent = ecsWorld.NewEntity();
+                    ref var counterEvent = ref newEvent.Get<CounterEvent>();
+                        counterEvent.Amount = stackComponent.ItemsStack.Count;
+                        counterEvent.StackEntity = pickupEvent.TriggerEntity;
+                        counterEvent.CounterEntity = pickupEvent.TriggerEntity.Get<StackComponent>().CounterEntity;
             }
 
             // Remove

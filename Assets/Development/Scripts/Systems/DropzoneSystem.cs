@@ -47,7 +47,6 @@ public class DropzoneSystem : IEcsRunSystem
         }
     }
 
-
     // Process stack removal
     private void ProcessStacks()
     {
@@ -59,14 +58,21 @@ public class DropzoneSystem : IEcsRunSystem
         {
             // Get
             ref var stackComponent = ref ecsFilterStacks.Get1(i);
-            if ((stackComponent.ItemsStack.Count > 0) && (stackComponent.Dropzone != EcsEntity.Null))
+            if ((stackComponent.ItemsStack.Count > 0) && (stackComponent.DropzoneEntity != EcsEntity.Null))
             {
                 // Get
-                Transform droppointTransform = stackComponent.Dropzone.Get<DropzoneComponent>().DroppointTransform;
+                Transform droppointTransform = stackComponent.DropzoneEntity.Get<DropzoneComponent>().DroppointTransform;
 
                 // Pick
                 Transform itemTransform = stackComponent.ItemsStack.Pop();
                 itemTransform.GetComponent<BoxCollider>().enabled = false;
+
+                // Event
+                var newEvent = ecsWorld.NewEntity();
+                    ref var counterEvent = ref newEvent.Get<CounterEvent>();
+                        counterEvent.Amount = stackComponent.ItemsStack.Count;
+                        counterEvent.StackEntity = ecsFilterStacks.GetEntity(i);
+                        counterEvent.CounterEntity = ecsFilterStacks.GetEntity(i).Get<StackComponent>().CounterEntity;
 
                 // Tweening
                 itemTransform.DOComplete();
