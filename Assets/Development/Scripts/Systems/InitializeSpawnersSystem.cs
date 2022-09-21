@@ -28,7 +28,7 @@ public class InitializeSpawnersSystem : IEcsInitSystem
             // Fillup data
             spawnerComponent.Cooldown = sceneData.SpawnerCooldown;
             spawnerComponent.Transform = spawnerView.transform;
-            spawnerComponent.ScriptableItem = sceneData.SpawnerScriptableItem;
+            spawnerComponent.PrefabToSpawn = sceneData.PrefabToSpawn;
 
             // Fillup positions
             spawnerComponent.SpawnPositions = new List<Transform>();

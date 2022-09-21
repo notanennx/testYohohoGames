@@ -8,6 +8,7 @@ public struct SpawnerComponent
     public float Cooldown;
     public float NextSpawn;
     public Transform Transform;
-    public ScriptableItem ScriptableItem;
+    public GameObject PrefabToSpawn;
+    //public ScriptableItem ScriptableItem;
     public List<Transform> SpawnPositions;
 }

@@ -12,5 +12,5 @@ public class SceneData : MonoBehaviour
     [BoxGroup("Holders")] public Transform ItemsHolder;
 
     [BoxGroup("Spawners")] public float SpawnerCooldown;
-    [BoxGroup("Spawners")] public ScriptableItem SpawnerScriptableItem;
+    [BoxGroup("Spawners")] public GameObject PrefabToSpawn;
 }

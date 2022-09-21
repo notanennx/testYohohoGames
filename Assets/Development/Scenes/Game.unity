@@ -924,7 +924,7 @@ MonoBehaviour:
   PlayerTransform: {fileID: 7701802558522447873}
   ItemsHolder: {fileID: 2079439321}
   SpawnerCooldown: 1
-  SpawnerScriptableItem: {fileID: 11400000, guid: df60fb0493067b04ba2298231090abb2, type: 2}
+  PrefabToSpawn: {fileID: 8674365581920511843, guid: 45a53de278719ac4fa723ad34dfee50d, type: 3}
 --- !u!114 &847933562
 MonoBehaviour:
   m_ObjectHideFlags: 0

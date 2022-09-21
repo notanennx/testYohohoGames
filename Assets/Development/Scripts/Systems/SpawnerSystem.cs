@@ -58,7 +58,7 @@ public class SpawnerSystem : IEcsRunSystem
     private void CreateItem(Transform spawnpointTransform, SpawnerComponent inputSpawner)
     {
         // Create
-        var newItem = Object.Instantiate(inputSpawner.ScriptableItem.Prefab, spawnpointTransform.position, Quaternion.identity);
+        var newItem = Object.Instantiate(inputSpawner.PrefabToSpawn, spawnpointTransform.position, Quaternion.identity);
             newItem.transform.SetParent(sceneData.ItemsHolder);
             newItem.transform.localScale = Vector3.zero;
             newItem.transform.localEulerAngles = new Vector3(0f, 360f * Random.Range(0f, 1f), 0f);
