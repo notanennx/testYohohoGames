@@ -24,7 +24,6 @@ public class InitializeSpawnersSystem : IEcsInitSystem
 
             // Fillup data
             spawnerComponent.Cooldown = spawnerData.Cooldown;
-            spawnerComponent.MaxAmount = spawnerData.Amount;
             spawnerComponent.Transform = spawnerData.Transform;
             spawnerComponent.ScriptableItem = spawnerData.ScriptableItem;
 

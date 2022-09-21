@@ -17,5 +17,7 @@ public class SceneData : MonoBehaviour
 
     [BoxGroup("Player")] public Transform PlayerTransform;
 
+    [BoxGroup("Holders")] public Transform ItemsHolder;
+
     [BoxGroup("Spawners")] public SpawnerData[] ItemSpawners;
 }
