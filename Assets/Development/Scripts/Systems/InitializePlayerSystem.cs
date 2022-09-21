@@ -1,5 +1,7 @@
 using Leopotam.Ecs;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class InitializePlayerSystem : IEcsInitSystem
 {
@@ -20,16 +22,15 @@ public class InitializePlayerSystem : IEcsInitSystem
             ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
             ref var animatorComponent = ref playerEntity.Get<AnimatorComponent>();
 
-            // Fill stack
-            //playerGO.GetComponentInChildren<CollisionCheckerView>().ecsWorld = ecsWorld;
-
             // Fill data
                 // Stack
                 ItemCollissionChecker itemCollissionChecker = sceneData.PlayerTransform.GetComponentInChildren<ItemCollissionChecker>();
                     itemCollissionChecker.EcsWorld = ecsWorld;
+                    itemCollissionChecker.TriggerEntity = playerEntity;
 
-                stackComponent.Capacity = 8;
+                stackComponent.Capacity = 16;
                 stackComponent.Transform = itemCollissionChecker.transform;
+                stackComponent.ItemsStack = new Stack<Transform>();
                 stackComponent.AttachmentTransform = stackComponent.Transform.GetChild(0);
 
                 // Anims

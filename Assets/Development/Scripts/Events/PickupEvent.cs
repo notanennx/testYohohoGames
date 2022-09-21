@@ -1,7 +1,8 @@
 using UnityEngine;
+using Leopotam.Ecs;
 
 public struct PickupEvent
 {
-    public Transform TriggerObject;
-    public Transform VictimObject;
+    public EcsEntity TriggerEntity;
+    public Transform VictimTransform;
 }

@@ -7,6 +7,7 @@ public class ItemCollissionChecker : MonoBehaviour
 {
     // Main
     public EcsWorld EcsWorld;
+    public EcsEntity TriggerEntity;
 
     // On triggering.
     private void OnTriggerEnter(Collider other)
@@ -14,7 +15,7 @@ public class ItemCollissionChecker : MonoBehaviour
         // Create
         var newEvent = EcsWorld.NewEntity();
             ref var pickupEvent = ref newEvent.Get<PickupEvent>();
-                pickupEvent.VictimObject = other.transform;
-                pickupEvent.TriggerObject = transform;
+                pickupEvent.TriggerEntity = TriggerEntity;
+                pickupEvent.VictimTransform = other.transform;
     }
 }
