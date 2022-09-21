@@ -27,6 +27,7 @@ public class EcsStartup : MonoBehaviour
 
             .Add(new InputSystem())
             .Add(new MovementSystem())
+            .Add(new AnimationSystem())
 
             .Inject(uiData)
             .Inject(sceneData);

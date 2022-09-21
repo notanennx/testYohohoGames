@@ -19,13 +19,17 @@ public class PlayerInitSystem : IEcsInitSystem
             ref var moveComponent = ref playerEntity.Get<MoveComponent>();
             ref var inputComponent = ref playerEntity.Get<InputComponent>(); 
             ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
+            ref var animatorComponent = ref playerEntity.Get<AnimatorComponent>();
 
-            // Fill move data
-            moveComponent.Transform = sceneData.PlayerTransform;
-            moveComponent.Animator = sceneData.PlayerTransform.GetComponentInChildren<Animator>();
-            moveComponent.MoveSpeed = 3.2f;
-            moveComponent.RotateSpeed = 6.4f;
-            moveComponent.CharacterController = sceneData.PlayerTransform.GetComponent<CharacterController>();
+            // Fill data
+                // Anims
+                animatorComponent.Animator = sceneData.PlayerTransform.GetComponentInChildren<Animator>();
+
+                // Movement
+                moveComponent.Transform = sceneData.PlayerTransform;
+                moveComponent.MoveSpeed = 4.8f;
+                moveComponent.RotateSpeed = 6.4f;
+                moveComponent.CharacterController = sceneData.PlayerTransform.GetComponent<CharacterController>();
         /*
 
         ref var inputData = ref playerEntity.Get<PlayerInputData>(); 

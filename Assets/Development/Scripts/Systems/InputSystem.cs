@@ -5,7 +5,7 @@ public class InputSystem : IEcsRunSystem
 {
     // Main
     private EcsWorld ecsWorld;
-    private EcsFilter<InputComponent, MoveComponent> filter;
+    private EcsFilter<InputComponent, MoveComponent> ecsFilter;
 
     // Data
     private UIData uiData;
@@ -13,12 +13,13 @@ public class InputSystem : IEcsRunSystem
     // Process
     public void Run()
     {
-        foreach (var i in filter)
+        // Loop
+        foreach (var i in ecsFilter)
         {
-            ref var inputComponent = ref filter.Get1(i);
+            ref var inputComponent = ref ecsFilter.Get1(i);
                 inputComponent.MoveInput = new Vector3(uiData.Joystick.Horizontal, 0, uiData.Joystick.Vertical);
 
-            ref var moveComponent = ref filter.Get2(i);
+            ref var moveComponent = ref ecsFilter.Get2(i);
                 moveComponent.TargetPosition = (inputComponent.MoveInput.normalized);
         }
     }

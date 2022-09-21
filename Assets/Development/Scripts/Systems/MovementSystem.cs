@@ -5,7 +5,7 @@ public class MovementSystem : IEcsRunSystem
 {
     // Main
     private EcsWorld ecsWorld;
-    private EcsFilter<MoveComponent> filter;
+    private EcsFilter<MoveComponent> ecsFilter;
 
     // Data
     private SceneData sceneData;
@@ -13,10 +13,11 @@ public class MovementSystem : IEcsRunSystem
     // Process
     public void Run()
     {
-        foreach (var i in filter)
+        // Loop
+        foreach (var i in ecsFilter)
         {
             // Get
-            ref var moveComponent = ref filter.Get1(i);
+            ref var moveComponent = ref ecsFilter.Get1(i);
 
                 // Move
                 Vector3 targetPosition = ConvertoToIso(moveComponent.TargetPosition * (moveComponent.MoveSpeed * Time.deltaTime));
